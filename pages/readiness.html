@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Travel readiness check | Ghana Travel Ready</title>
+<meta name="description" content="Tell us who is travelling and when, and get a readiness checklist for a trip between Europe and Ghana. Nothing is sent; entries stay in this browser.">
+<style>@view-transition { navigation: auto; }</style>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/site.css">
+<link rel="stylesheet" href="../css/picks.css">
+<link rel="stylesheet" href="../css/readiness.css">
+<script src="../js/nav.js" defer></script>
+<script src="../js/motion.js" defer></script>
+<script src="../js/app.js" defer></script>
+<script src="../js/checklist-data.js" defer></script>
+<script src="../js/picks.js" defer></script>
+<script src="../js/tools.js" defer></script>
+</head>
+<body>
+<main id="main">
+
+  <section class="rd-hero" aria-labelledby="rd-h1">
+    <p class="rd-eyebrow" data-reveal>Readiness check</p>
+    <h1 id="rd-h1" data-words>Are you ready to travel? Find out in a minute.</h1>
+    <p class="rd-lead" data-reveal>Answer a few questions about the traveller and the trip. You get a checklist of what to look into before you go. <strong>Nothing is sent anywhere:</strong> your answers stay in this browser.</p>
+  </section>
+
+  <section class="band rd-main" aria-labelledby="rd-form-h">
+    <div class="rd-grid">
+      <form id="readiness-form" class="rd-form" novalidate autocomplete="off" aria-labelledby="rd-form-h">
+        <h2 id="rd-form-h" class="rd-h2" data-reveal>About the traveller and the trip</h2>
+
+        <fieldset class="rd-set">
+          <legend>The traveller</legend>
+          <div class="rd-field">
+            <label for="f-nationality">Nationality (passport)</label>
+            <select id="f-nationality" name="nationality" required aria-describedby="f-nationality-err">
+              <option value="">Choose one</option>
+              <option value="canada">Canada</option>
+              <option value="uk">United Kingdom</option>
+              <option value="eu">EU / Schengen state</option>
+              <option value="china">China</option>
+              <option value="india">India</option>
+              <option value="japan">Japan</option>
+              <option value="south-korea">South Korea</option>
+              <option value="philippines">Philippines</option>
+              <option value="vietnam">Vietnam</option>
+              <option value="malaysia">Malaysia</option>
+              <option value="pakistan">Pakistan</option>
+              <option value="bangladesh">Bangladesh</option>
+              <option value="singapore">Singapore</option>
+              <option value="ghana">Ghana</option>
+              <option value="ecowas">Another ECOWAS state</option>
+              <option value="africa-other">Other African Union state</option>
+              <option value="caribbean">Caribbean state (for example Barbados, Jamaica, Trinidad and Tobago)</option>
+              <option value="other">Another nationality</option>
+            </select>
+            <p class="rd-error" id="f-nationality-err" role="alert" hidden></p>
+          </div>
+          <div class="rd-field">
+            <label for="f-passport-expiry">Passport expiry date</label>
+            <input id="f-passport-expiry" name="passportExpiry" type="date" required aria-describedby="f-passport-expiry-err">
+            <p class="rd-error" id="f-passport-expiry-err" role="alert" hidden></p>
+          </div>
+          <div class="rd-field">
+            <label for="f-passport-no">Passport number <span class="rd-opt">(optional)</span></label>
+            <input id="f-passport-no" name="passportNumber" type="text" inputmode="text" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="20" aria-describedby="f-passport-no-hint">
+            <p class="rd-hint" id="f-passport-no-hint">Never saved and never sent. It is not needed for the checklist; leave it empty if you prefer.</p>
+          </div>
+        </fieldset>
+
+        <fieldset class="rd-set">
+          <legend>The trip</legend>
+          <div class="rd-field">
+            <label for="f-from">Travelling from</label>
+            <input id="f-from" name="from" type="text" autocomplete="off" placeholder="City or country" aria-describedby="f-from-err">
+            <p class="rd-error" id="f-from-err" role="alert" hidden></p>
+          </div>
+          <fieldset class="rd-choice" aria-describedby="f-direction-err">
+            <legend>Direction</legend>
+            <label class="rd-radio"><input type="radio" name="direction" value="eu-gh" checked><span>Europe to Ghana</span></label>
+            <label class="rd-radio"><input type="radio" name="direction" value="gh-eu"><span>Ghana to Europe</span></label>
+            <p class="rd-error" id="f-direction-err" role="alert" hidden></p>
+          </fieldset>
+          <div class="rd-row">
+            <div class="rd-field">
+              <label for="f-depart">Departure date</label>
+              <input id="f-depart" name="depart" type="date" required aria-describedby="f-depart-err">
+              <p class="rd-error" id="f-depart-err" role="alert" hidden></p>
+            </div>
+            <div class="rd-field">
+              <label for="f-return">Return date <span class="rd-opt">(optional)</span></label>
+              <input id="f-return" name="return" type="date" aria-describedby="f-return-err">
+              <p class="rd-error" id="f-return-err" role="alert" hidden></p>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="rd-set">
+          <legend>Health and budget</legend>
+          <div class="rd-field">
+            <label for="f-yf">Yellow fever vaccination</label>
+            <select id="f-yf" name="yellowFever" aria-describedby="f-yf-err">
+              <option value="unsure">Not sure</option>
+              <option value="yes">Yes, vaccinated</option>
+              <option value="no">No, not vaccinated</option>
+            </select>
+            <p class="rd-error" id="f-yf-err" role="alert" hidden></p>
+          </div>
+          <div class="rd-field">
+            <label for="f-health-notes">Health notes <span class="rd-opt">(optional)</span></label>
+            <textarea id="f-health-notes" name="healthNotes" rows="3" maxlength="500" aria-describedby="f-health-hint"></textarea>
+            <p class="rd-hint" id="f-health-hint">For example medicines you take or conditions to plan around. Stays in this browser.</p>
+          </div>
+          <fieldset class="rd-choice">
+            <legend>Budget tier</legend>
+            <label class="rd-radio"><input type="radio" name="budget" value="lean"><span>Lean</span></label>
+            <label class="rd-radio"><input type="radio" name="budget" value="comfortable" checked><span>Comfortable</span></label>
+            <label class="rd-radio"><input type="radio" name="budget" value="premium"><span>Premium</span></label>
+          </fieldset>
+        </fieldset>
+
+        <div class="rd-actions">
+          <button type="submit" class="rd-btn" id="rd-submit">Check my readiness</button>
+          <button type="reset" class="rd-btn rd-btn--ghost" id="rd-reset">Clear the form</button>
+        </div>
+        <p class="rd-privacy">Nothing is sent. Your answers stay in this browser (localStorage) and you can clear them any time. This is general information, not legal, tax, medical or immigration advice: confirm with the official sources before you travel.</p>
+      </form>
+
+      <div class="rd-results" aria-live="polite">
+        <div id="checklist" class="rd-panel" data-checklist>
+          <h2 class="rd-h2 rd-h2--sm">Your checklist</h2>
+          <p class="rd-empty">Fill in the form and choose "Check my readiness". Your checklist appears here.</p>
+        </div>
+        <div id="picks" class="rd-panel" data-picks>
+          <h2 class="rd-h2 rd-h2--sm">Suggestions for your trip</h2>
+          <p class="rd-empty">Suggestions appear here once you have a checklist.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+</body>
+</html>
