@@ -56,11 +56,20 @@
 
   // ---- personalised checklist ----
   // status: 'todo' (action needed), 'warn' (problem found), 'info', 'check' (check with the embassy)
+  // 'ghana' (if the form offers it) or 'ecowas' (the form's "including Ghana" option) is treated as a possible Ghanaian passport.
+  function ghanaian(a) { return a.nationality === 'ghana' || a.nationality === 'ecowas'; }
+  var VISA_ITEMS = { 'eg-evisa': 1, 'eg-evisa-time': 1, 'eg-fee': 1, 'eg-voa': 1 };
   function personal(a) {
     var dep = parse(a.depart), ret = parse(a.return), exp = parse(a.passportExpiry), end = ret || dep, list = [], t = today();
+    if (a.direction === 'eu-gh' && ghanaian(a)) {
+      list.push({ id: 'p-gh-entry', group: 'visa', status: 'check', text: 'If you are travelling on a Ghanaian passport into Ghana: check entry and health-declaration rules with the Ghana Immigration Service. The yellow fever certificate and the online Health Declaration still apply.', asof: D.checkedOn, source: 'Ghana Immigration Service; CDC', link: 'https://evisa.immigration.gov.gh' });
+    }
+    if (a.direction === 'gh-eu' && !ghanaian(a)) {
+      return [{ id: 'p-other-entry', group: 'visa', status: 'check', text: 'Entry rules for your passport depend on your nationality and destination: check the destination country\u2019s embassy or official site.', asof: D.checkedOn, source: 'Destination country\u2019s embassy' }];
+    }
     if (a.direction === 'eu-gh') {
       var v = D.visa[D.visaMap[a.nationality] || 'other'];
-      list.push({ id: 'p-visa', group: 'visa', text: v.text + (v.unconfirmed ? '' : ' Apply for the e-visa or ETA before you fly.'), asof: v.asof, source: v.source, link: 'https://evisa.immigration.gov.gh', status: v.unconfirmed ? 'check' : 'todo' });
+      if (!ghanaian(a)) list.push({ id: 'p-visa', group: 'visa', text: v.text + (v.unconfirmed ? '' : ' Apply for the e-visa or ETA before you fly.'), asof: v.asof, source: v.source, link: 'https://evisa.immigration.gov.gh', status: v.unconfirmed ? 'check' : 'todo' });
       var need = addMonths(end, 6), ok = exp >= need;
       list.push({ id: 'p-passport', group: 'passport', key: 'passport', status: ok ? 'info' : 'warn',
         text: ok ? 'Your passport expires ' + fmt(exp) + ', which is more than 6 months after ' + (ret ? 'your return' : 'you arrive') + ' (' + fmt(end) + '). That meets the 6-month rule.'
@@ -89,7 +98,7 @@
   }
   function build(a) {
     var p = personal(a), keys = {}; p.forEach(function (i) { if (i.key) keys[i.key] = 1; });
-    var rest = D.items.filter(function (i) { return i.dir === a.direction && !(i.key && keys[i.key]); }).map(function (i) { var c = {}; for (var k in i) c[k] = i[k]; c.status = i.unconfirmed ? 'check' : 'todo'; return c; });
+    var rest = D.items.filter(function (i) { return i.dir === a.direction && !(i.key && keys[i.key]) && !(a.direction === 'gh-eu' && !ghanaian(a)) && !(a.direction === 'eu-gh' && ghanaian(a) && VISA_ITEMS[i.id]); }).map(function (i) { var c = {}; for (var k in i) c[k] = i[k]; c.status = i.unconfirmed ? 'check' : 'todo'; return c; });
     return p.concat(rest);
   }
 
