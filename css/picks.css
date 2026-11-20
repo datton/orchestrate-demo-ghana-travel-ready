@@ -1,0 +1,21 @@
+.picks { margin-block: 2rem; }
+.picks__title { font-size: clamp(1.5rem, 3.5vw, 2.2rem); letter-spacing: -.02em; margin: 0 0 .4rem; }
+.picks__note { max-width: 65ch; opacity: .8; margin: 0 0 1.2rem; }
+.picks__tabs { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.5rem; }
+.picks__tab { min-height: 44px; padding: .5rem 1.1rem; border-radius: 999px; border: 1.5px solid currentColor; background: transparent; color: inherit; font: inherit; font-weight: 600; cursor: pointer; transition: transform .3s cubic-bezier(.2,.7,.2,1), background .2s; }
+.picks__tab:hover { transform: translateY(-2px); }
+.picks__tab[aria-selected="true"] { background: var(--accent, #0b6b3a); border-color: var(--accent, #0b6b3a); color: var(--on-accent, #fff); }
+.picks__tab:focus-visible { outline: 3px solid var(--focus, #1a56db); outline-offset: 2px; }
+.picks__panel { display: grid; gap: 1.5rem; }
+@media (min-width: 900px) { .picks__panel { grid-template-columns: repeat(3, 1fr); align-items: start; } }
+.picks__h { font-size: 1.1rem; margin: 0 0 .7rem; text-transform: uppercase; letter-spacing: .06em; opacity: .75; }
+.picks__list { list-style: none; margin: 0; padding: 0; display: grid; gap: .9rem; }
+.picks__card { display: flex; gap: .9rem; padding: 1.1rem; border-radius: 18px; background: var(--surface, #fff); color: var(--text, #111); box-shadow: 0 2px 4px rgba(0,0,0,.05), 0 10px 28px rgba(0,0,0,.07); animation: picks-in .5s cubic-bezier(.2,.7,.2,1) both; }
+.picks__card h4 { margin: 0 0 .3rem; font-size: 1.05rem; }
+.picks__card p { margin: 0 0 .5rem; max-width: 65ch; }
+.picks__icon { font-size: 1.4rem; line-height: 1.2; }
+.picks__meta { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 !important; }
+.picks__band { font-weight: 700; padding: .15rem .6rem; border-radius: 999px; background: rgba(127,127,127,.15); }
+.picks__sample { font-size: .85rem; font-weight: 600; padding: .15rem .6rem; border-radius: 999px; background: #fff3cd; color: #5c4300; }
+@keyframes picks-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .picks__card { animation: none; } .picks__tab { transition: none; } }
