@@ -4,8 +4,8 @@
   'use strict';
   var TIERS = [
     { id: 'budget', label: 'Budget', band: '$' },
-    { id: 'mid', label: 'Mid-range', band: '$$' },
-    { id: 'comfort', label: 'Comfort', band: '$$$' }
+    { id: 'mid', label: 'Comfortable', band: '$$' },
+    { id: 'comfort', label: 'Premium', band: '$$$' }
   ];
 
   var DATA = {
@@ -31,7 +31,7 @@
       title: 'Ideas for your trip from Ghana',
       flights: {
         budget: [['A one-stop flight from Accra with a longer layover', 'Usually the lowest fare band. Check transit rules for the connecting country.'], ['Flexible dates, midweek travel', 'Compare a few days either side of your preferred date.']],
-        mid: [['A one-stop flight with a short connection', 'A balance of price and travel time.'], ['A direct flight from Kotoka International Airport where one is offered', 'Direct routes vary by season, so check what is flying on your dates.']],
+        mid: [['A one-stop flight with a short connection', 'A balance of price and travel time.'], ['A direct flight from Accra (ACC) where one is offered', 'Direct routes vary by season, so check what is flying on your dates.']],
         comfort: [['A direct overnight flight with extra legroom', 'The shortest journey, with more room to rest.'], ['Flexible fare you can change', 'Costs more, but lets you change dates if plans move.']]
       },
       stays: {
@@ -55,15 +55,15 @@
   function pickDirection(a) {
     var raw = '';
     ['direction', 'route', 'trip', 'dir', 'journey'].forEach(function (k) { if (!raw && a && a[k]) raw = String(a[k]).toLowerCase(); });
-    if (/from[-_ ]?ghana|ghana[-_ ]?to|out|leav|depart|ghana[-_ ]?eu|gh[-_]?eu|gh2eu/.test(raw) && !/^(eu|europe)[-_ ]?to/.test(raw)) return 'fromGhana';
-    if (/to[-_ ]?ghana|europe[-_ ]?to|eu[-_ ]?to|eu[-_ ]?gh|eu2gh|into|visit/.test(raw)) return 'toGhana';
+    if (/^gh[-_ ]?eu|from[-_ ]?ghana|ghana[-_ ]?to|leav|depart|ghana[-_ ]?eu|gh2eu/.test(raw) && !/^(eu|europe)[-_ ]?to/.test(raw)) return 'fromGhana';
+    if (/^eu[-_ ]?gh|to[-_ ]?ghana|europe[-_ ]?to|eu2gh|into|visit/.test(raw)) return 'toGhana';
     return 'toGhana';
   }
   function pickTier(a) {
     var raw = '';
     ['budget', 'tier', 'budgetTier', 'level'].forEach(function (k) { if (!raw && a && a[k]) raw = String(a[k]).toLowerCase(); });
-    if (/comfort|high|luxur|\$\$\$/.test(raw)) return 'comfort';
-    if (/mid|\$\$|medium/.test(raw)) return 'mid';
+    if (/premium|comfort$|high|luxur|\$\$\$/.test(raw)) return 'comfort';
+    if (/comfortable|mid|\$\$|medium/.test(raw)) return 'mid';
     return 'budget';
   }
 
