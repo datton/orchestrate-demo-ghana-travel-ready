@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ghana Travel Ready: know what to sort before you fly</title>
+<meta name="description" content="A simple readiness check for trips between Europe and Ghana: visa, passport, yellow fever, insurance and customs, with the source for each point. Nothing is sent; entries stay in this browser.">
+<style>@view-transition { navigation: auto; }</style>
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/site.css">
+<style>
+.h-hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:6rem max(1rem,5vw) 4rem;background:radial-gradient(60rem 30rem at 85% 5%,var(--accent-soft),transparent 70%),var(--bg)}
+.h-hero h1{font-size:clamp(3rem,9vw,7rem);line-height:1;letter-spacing:-.04em;margin:0 0 1.5rem;max-width:15ch}
+.h-hero .lead{font-size:clamp(1.1rem,2vw,1.5rem);max-width:58ch;margin:0 0 2rem;opacity:.85}
+.kin{background:var(--gradient-text);-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% 100%;animation:h-sweep 6s linear infinite}
+@keyframes h-sweep{to{background-position:-200% 0}}
+.h-btn{display:inline-flex;align-items:center;min-height:48px;padding:.75rem 1.6rem;border-radius:999px;background:var(--accent);color:var(--on-accent);font:inherit;font-weight:700;text-decoration:none;border:2px solid var(--accent);cursor:pointer;transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s}
+.h-btn:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,0,0,.2)}
+.h-btn--ghost{background:transparent;color:inherit;border-color:currentColor;margin-left:.75rem}
+.h-big{font-size:clamp(2.2rem,6vw,4.5rem);line-height:1.05;letter-spacing:-.03em;margin:0 0 2rem;max-width:18ch}
+.h-marq{overflow:hidden;white-space:nowrap}.h-marq span{display:inline-block;font-size:clamp(4rem,14vw,12rem);font-weight:800;letter-spacing:-.04em;padding-right:2rem}
+.h-state{font-size:clamp(1.8rem,4.5vw,3.6rem);line-height:1.2;letter-spacing:-.02em;max-width:26ch;margin:0}
+.h-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr));gap:1.25rem;margin:0;padding:0;list-style:none}
+.h-card{border-radius:1.25rem;padding:1.75rem;background:var(--surface);color:var(--text);box-shadow:var(--shadow);transition:transform .3s cubic-bezier(.2,.7,.2,1)}
+.h-card:hover{transform:translateY(-4px)}.h-card h3{margin:0 0 .5rem;font-size:1.3rem}.h-card p{margin:0 0 .5rem}.h-card small{opacity:.7}
+.h-nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));gap:2rem}
+.h-nums b{display:block;font-size:clamp(3rem,8vw,6rem);letter-spacing:-.04em;line-height:1}
+.h-steps{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.h-steps [data-step-word]{position:sticky;top:20vh;font-size:clamp(3.5rem,12vw,10rem);font-weight:800;letter-spacing:-.05em;line-height:1;color:var(--accent-on-dark)}
+.h-steps .step{min-height:60vh;display:flex;align-items:center;font-size:clamp(1.5rem,3vw,2.5rem);line-height:1.25;max-width:22ch}
+.h-two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr));gap:2rem;align-items:start}
+.h-tool{background:var(--surface);color:var(--text);border-radius:1.5rem;padding:clamp(1.25rem,3vw,2.2rem);box-shadow:var(--shadow)}
+.h-tool h3{margin:0 0 .4rem;font-size:1.5rem}.h-tool p.sub{margin:0 0 1rem;opacity:.8}
+.h-field{display:grid;gap:.35rem;margin-block:1rem}.h-field label{font-weight:600}
+.h-field input{font:inherit;min-height:44px;padding:.7rem 1rem;border-radius:12px;border:1.5px solid rgba(127,127,127,.55);background:var(--bg);color:inherit;width:100%}
+.h-field input[aria-invalid="true"]{border-color:var(--danger)}
+.h-err{color:var(--danger);font-weight:600;font-size:.9rem}.h-err:empty{display:none}
+.h-out{margin:1.25rem 0 0;padding:1rem 1.2rem;border-radius:14px;background:var(--surface-2);font-weight:600;animation:h-in .5s cubic-bezier(.2,.7,.2,1)}
+.h-out[hidden]{display:none}.h-out.ok{border-left:6px solid var(--success)}.h-out.warn{border-left:6px solid var(--danger)}
+.h-out small{display:block;font-weight:400;opacity:.8;margin-top:.4rem}
+@keyframes h-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.h-note{font-size:.9rem;opacity:.75;max-width:65ch}
+@media(max-width:700px){.h-steps{grid-template-columns:1fr}.h-steps [data-step-word]{position:static}.h-steps .step{min-height:auto;padding-block:1.5rem}.h-btn--ghost{margin:.75rem 0 0}}
+@media(prefers-reduced-motion:reduce){.kin{animation:none}.h-out{animation:none}}
+</style>
+<script src="js/nav.js" defer></script>
+<script src="js/motion.js" defer></script>
+<script src="js/app.js" defer></script>
+</head>
+<body>
+<main id="main">
+
+<section class="h-hero" id="top">
+  <p class="h-note" data-reveal>Europe to Ghana, and Ghana to Europe</p>
+  <h1 data-words>Know what to sort before you <span class="kin">fly.</span></h1>
+  <p class="lead" data-reveal>Visa, passport, yellow fever, insurance and customs in one short checklist, with the official source next to every point. Rules checked 20 November 2026.</p>
+  <p data-reveal><a class="h-btn" href="pages/readiness.html">Start my readiness check</a><a class="h-btn h-btn--ghost" href="#quick">Try a quick check</a></p>
+</section>
+
+<section class="band band--dark" aria-label="What the check covers">
+  <div class="h-marq" data-marquee aria-hidden="true"><span>Visa · Passport · Yellow fever · Insurance · Customs · Entry rules · Visa · Passport · Yellow fever · Insurance · Customs · Entry rules · </span></div>
+</section>
+
+<section class="band" id="covers" aria-labelledby="cov-h">
+  <h2 class="h-big" id="cov-h" data-words>What the check covers</h2>
+  <ul class="h-cards">
+    <li class="h-card" data-reveal><h3>Visa and entry</h3><p>Whether your passport needs a visa for Ghana, and how the online e-visa works.</p><small>Source: Ghana e-visa portal, Ghana Ministry of Foreign Affairs</small></li>
+    <li class="h-card" data-reveal><h3>Passport validity</h3><p>How long your passport must stay valid, using the stricter of the published rules.</p><small>Source: Ghana Immigration Service, Government of Canada, UK FCDO</small></li>
+    <li class="h-card" data-reveal><h3>Health</h3><p>Yellow fever certificate, the online Health Declaration, malaria and other vaccines to discuss.</p><small>Source: CDC, TravelHealthPro</small></li>
+    <li class="h-card" data-reveal><h3>Insurance and safety</h3><p>Why cover for treatment and evacuation matters, and where official travel advice is published.</p><small>Source: Government of Canada, UK FCDO</small></li>
+    <li class="h-card" data-reveal><h3>Customs</h3><p>Cash declaration above US$10,000, duty-free allowances and what you cannot bring.</p><small>Source: Bank of Ghana, Ghana Revenue Authority</small></li>
+    <li class="h-card" data-reveal><h3>Ghana to Europe</h3><p>For Ghanaian passport holders: how the Schengen and UK visitor visa processes work.</p><small>Source: German Embassy Accra, GOV.UK</small></li>
+  </ul>
+</section>
+
+<section class="band band--dark">
+  <p class="h-state" data-fill>Rules change, and a missed step can mean being turned away at the airport. We show the date and the source, and say plainly when to check with the embassy.</p>
+</section>
+
+<section class="band" id="nums" aria-label="Key numbers">
+  <div class="h-nums">
+    <div data-reveal><b data-count="6">6</b>months of passport validity to plan for</div>
+    <div data-reveal><b data-count="10">10</b>days before travel to have the yellow fever vaccine</div>
+    <div data-reveal><b data-count="112">112</b>the general emergency number in Ghana</div>
+  </div>
+  <p class="h-note" style="margin-top:1.5rem" data-reveal>Sources: Ghana Immigration Service, CDC, Government of Canada. As of 20 November 2026.</p>
+</section>
+
+<section class="band band--dark" id="how">
+  <div class="h-steps" data-sticky-steps>
+    <div data-step-word aria-hidden="true">Tell us</div>
+    <div>
+      <div class="step" data-step="Tell us">Tell us the passport, the dates and the route.</div>
+      <div class="step" data-step="Check">Get a checklist built for that trip, with sources.</div>
+      <div class="step" data-step="Tick off">Tick items off as you go. Your progress stays in this browser.</div>
+      <div class="step" data-step="Explore">Then browse sample ideas for flights, stays and sights by budget.</div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="quick" aria-labelledby="q-h">
+  <h2 class="h-big" id="q-h" data-words>Two quick checks</h2>
+  <div class="h-two">
+    <form class="h-tool" id="pp" novalidate data-reveal aria-labelledby="pp-h">
+      <h3 id="pp-h">Is my passport valid long enough?</h3>
+      <p class="sub">For a trip to Ghana. We use the stricter published rule: valid at least 6 months beyond the day you leave Ghana.</p>
+      <div class="h-field"><label for="pp-exp">Passport expiry date</label><input id="pp-exp" type="date" required><span class="h-err" id="pp-exp-e"></span></div>
+      <div class="h-field"><label for="pp-ret">Date you leave Ghana</label><input id="pp-ret" type="date" required><span class="h-err" id="pp-ret-e"></span></div>
+      <button class="h-btn" type="submit">Check my passport</button>
+      <div class="h-out" id="pp-out" role="status" hidden></div>
+    </form>
+    <form class="h-tool" id="yf" novalidate data-reveal aria-labelledby="yf-h">
+      <h3 id="yf-h">When should I get the yellow fever vaccine?</h3>
+      <p class="sub">The certificate is required for arrivals aged 9 months and over. Vaccinate at least 10 days before you travel.</p>
+      <div class="h-field"><label for="yf-dep">Date you fly to Ghana</label><input id="yf-dep" type="date" required><span class="h-err" id="yf-dep-e"></span></div>
+      <button class="h-btn" type="submit">Find the latest date</button>
+      <div class="h-out" id="yf-out" role="status" hidden></div>
+    </form>
+  </div>
+  <p class="h-note" style="margin-top:1.5rem" data-reveal>Nothing you enter is sent anywhere or saved. These are general reminders: confirm with the official source for your passport.</p>
+</section>
+
+<section class="band band--dark" id="go">
+  <h2 class="h-big" data-words>Ready for the full check?</h2>
+  <p class="prose" data-reveal>Answer a few questions and get a personal checklist, then sample ideas for flights, stays and sights. Your answers stay in this browser.</p>
+  <p data-reveal><a class="h-btn" href="pages/readiness.html">Start my readiness check</a></p>
+  <p class="h-note" style="margin-top:2.5rem" data-reveal>General information only, not legal, immigration or medical advice. Rules checked 20 November 2026; check with the embassy or the official source before you travel.</p>
+</section>
+
+</main>
+</body>
+</html>
