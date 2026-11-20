@@ -22,9 +22,9 @@
         comfort: [['A beachfront hotel on the coast', 'Pool, restaurant and an easy base for day trips.'], ['A city hotel with airport transfer', 'Short, easy first night after a long flight.']]
       },
       sights: {
-        budget: [['Cape Coast Castle', 'A historic fort on the coast of the Central Region and a UNESCO World Heritage site. Plan time for the guided tour.'], ['Accra city walk', 'Ghana’s capital: markets, street food and the Kwame Nkrumah Memorial Park.']],
-        mid: [['Kakum National Park', 'Rainforest in the Central Region, known for its canopy walkway.'], ['Elmina Castle', 'A coastal fort near Cape Coast, also a UNESCO World Heritage site.']],
-        comfort: [['Mole National Park', 'Ghana’s largest wildlife park, in the north. Allow extra days for the journey.'], ['Kumasi', 'The Ashanti Region’s capital, with its large Kejetia market and the Manhyia Palace Museum.']]
+        budget: [['Cape Coast Castle', 'A historic fort on the coast near Cape Coast. Check opening hours and fees with the site before you go.'], ['Accra', 'Ghana’s capital. A good base for your first days.']],
+        mid: [['Kakum National Park', 'A national park and one of Ghana’s most visited attractions. Check opening hours and fees before you go.'], ['Elmina Castle', 'A historic fort on the coast, often visited with Cape Coast Castle and Kakum as a day trip.']],
+        comfort: [['Mole National Park', 'Ghana’s largest protected area, in the Northern Region, with wildlife such as elephants and buffalo. Allow extra days for the journey.'], ['Kumasi', 'One of Ghana’s major cities, a stop if you want to see beyond the coast.']]
       }
     },
     fromGhana: {
@@ -52,19 +52,11 @@
 
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
 
-  function pickDirection(a) {
-    var raw = '';
-    ['direction', 'route', 'trip', 'dir', 'journey'].forEach(function (k) { if (!raw && a && a[k]) raw = String(a[k]).toLowerCase(); });
-    if (/^gh[-_ ]?eu|from[-_ ]?ghana|ghana[-_ ]?to|leav|depart|ghana[-_ ]?eu|gh2eu/.test(raw) && !/^(eu|europe)[-_ ]?to/.test(raw)) return 'fromGhana';
-    if (/^eu[-_ ]?gh|to[-_ ]?ghana|europe[-_ ]?to|eu2gh|into|visit/.test(raw)) return 'toGhana';
-    return 'toGhana';
-  }
+  // Field values from pages/readiness.html: direction eu-gh | gh-eu; budget lean | comfortable | premium.
+  function pickDirection(a) { return a && a.direction === 'gh-eu' ? 'fromGhana' : 'toGhana'; }
   function pickTier(a) {
-    var raw = '';
-    ['budget', 'tier', 'budgetTier', 'level'].forEach(function (k) { if (!raw && a && a[k]) raw = String(a[k]).toLowerCase(); });
-    if (/premium|comfort$|high|luxur|\$\$\$/.test(raw)) return 'comfort';
-    if (/comfortable|mid|\$\$|medium/.test(raw)) return 'mid';
-    return 'budget';
+    var b = a && a.budget;
+    return b === 'premium' ? 'comfort' : b === 'comfortable' ? 'mid' : 'budget';
   }
 
   function card(item, band, icon) {
